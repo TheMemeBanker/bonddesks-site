@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BOND Desks — stake $BOND, earn $OTC</title>
-<meta name="description" content="The bond desk of the OTC family. Stake $BOND, earn $OTC from a fixed, on-chain-verifiable 50M pool. No lockups. Your tokens never leave your wallet.">
+<title>BOND Desks — stake $BND, earn $OTC</title>
+<meta name="description" content="The bond desk of the OTC family. Stake $BND, earn $OTC from a fixed, on-chain-verifiable 50M pool. No lockups. Your tokens never leave your wallet.">
 <link rel="icon" type="image/png" href="./favicon.png">
 <meta property="og:title" content="BOND Desks">
-<meta property="og:description" content="Stake $BOND. Earn $OTC. Fixed pool, verifiable on-chain.">
+<meta property="og:description" content="Stake $BND. Earn $OTC. Fixed pool, verifiable on-chain.">
 <meta name="theme-color" content="#141414">
 <link rel="stylesheet" href="./theirs.css">
 <link rel="stylesheet" href="./bond.css">
@@ -21,9 +21,8 @@
       <span class="bd-brand-word">BOND DESKS</span>
     </a>
     <div class="bd-sibs">
-      <a id="bondTokenLink" class="bd-sib" href="#" aria-disabled="true" title="$BOND — launching">$BOND</a>
+      <a id="bondTokenLink" class="bd-sib" href="#" aria-disabled="true" title="$BND — launching">$BND</a>
       <a class="bd-sib" href="https://otcdesks.cash/" target="_blank" rel="noopener">OTC</a>
-      <a class="bd-sib" href="https://fxdesks.cash/" target="_blank" rel="noopener">FX</a>
     </div>
     <nav aria-label="Main" class="ml-auto flex min-w-0 items-center gap-4 overflow-x-auto no-scrollbar bd-nav">
       <a class="shrink-0 text-[12.5px] transition-colors text-muted hover:text-ink" href="#stake">Stake</a>
@@ -43,8 +42,8 @@
 
   <main id="top">
     <section id="stake" class="bd-hero">
-      <h1 class="bd-h1">Stake <span class="bd-bond">$BOND</span>.<br>Earn <span class="bd-otc">$OTC</span>.</h1>
-      <p class="bd-sub">The bond desk pays a coupon. A fixed pool of <b>50,000,000 $OTC</b> streams to $BOND holders over 12 months — weekly snapshots, pro-rata by stake. No lockups. Your tokens never leave your wallet.</p>
+      <h1 class="bd-h1">Stake <span class="bd-bond">$BND</span>.<br>Earn <span class="bd-otc">$OTC</span>.</h1>
+      <p class="bd-sub">The bond desk pays a coupon. A fixed pool of <b>50,000,000 $OTC</b> streams to $BND stakers over 12 months — <b>961,538 $OTC every week</b>, split pro-rata by weighted stake. Pick a maturity for a bigger coupon, or stay flexible. <b>Unstake anytime</b> — your principal is never locked, and rewards are prorated to the second.</p>
       <div class="bd-stats" id="heroStats">
         <div class="bd-stat"><span class="bd-stat-n" id="stPool">—</span><span class="bd-stat-l">$OTC in pool (live)</span></div>
         <div class="bd-stat"><span class="bd-stat-n" id="stPoolUsd">—</span><span class="bd-stat-l">pool value</span></div>
@@ -55,31 +54,47 @@
 
     <section id="calculator" class="bd-section">
       <h2 class="bd-h2">Coupon calculator</h2>
-      <p class="bd-subtle">Estimates, not guarantees — your coupon depends on how much $BOND is staked next to yours.</p>
+      <p class="bd-subtle">Estimate your $OTC coupon. Pick a maturity, size your stake, and assume how much weighted $BND competes with you. Estimates, not guarantees — your share moves with the pool.</p>
       <div class="bd-calc rounded-[20px] bg-paper-2/40 pb-[1px]">
         <div class="mt-2 rounded-[18px] border border-line bg-paper p-4 bd-calc-in">
+          <div class="bd-mat" id="matRow" role="tablist" aria-label="Maturity">
+            <button class="bd-mat-b" data-w="1.00" data-wk="0"  type="button">Call<span>flexible · 1.00×</span></button>
+            <button class="bd-mat-b" data-w="1.25" data-wk="13" type="button">Short<span>3mo · 1.25×</span></button>
+            <button class="bd-mat-b" data-w="1.50" data-wk="26" type="button">Note<span>6mo · 1.50×</span></button>
+            <button class="bd-mat-b on" data-w="2.00" data-wk="52" type="button">Long Bond<span>12mo · 2.00×</span></button>
+          </div>
           <div class="bd-calc-grid">
-            <label class="bd-field"><span class="bd-lab">Your $BOND stake</span><input id="cYours" type="text" inputmode="decimal" value="1,000,000" class="bd-input tabular-nums"></label>
-            <label class="bd-field"><span class="bd-lab">Total $BOND staked (assumption)</span><input id="cTotal" type="text" inputmode="decimal" value="100,000,000" class="bd-input tabular-nums"></label>
+            <label class="bd-field"><span class="bd-lab">Your $BND stake</span><input id="cYours" type="text" inputmode="decimal" value="1,000,000" class="bd-input tabular-nums"></label>
+            <label class="bd-field"><span class="bd-lab">Total weighted stake in pool</span><input id="cTotal" type="text" inputmode="decimal" value="120,000,000" class="bd-input tabular-nums"></label>
           </div>
-          <input id="cSlider" type="range" min="6" max="9.7" step="0.05" value="8" class="bd-slider" aria-label="Total staked, log scale">
+          <input id="cSlider" type="range" min="6" max="9.7" step="0.05" value="8.08" class="bd-slider" aria-label="Total weighted stake, log scale">
+          <div class="bd-durrow"><span class="bd-lab" style="margin:0">Weeks staked</span><span class="bd-dur-v tabular-nums" id="durVal">52</span><input id="cDur" type="range" min="1" max="52" step="1" value="52" class="bd-slider" style="flex:1;margin:0" aria-label="Weeks staked"></div>
           <div class="bd-calc-out">
-            <div><span class="bd-lab">Your share</span><div class="bd-big" id="oShare">—</div></div>
-            <div><span class="bd-lab">$OTC / week</span><div class="bd-big" id="oWeek">—</div></div>
-            <div><span class="bd-lab">$OTC / year</span><div class="bd-big" id="oYear">—</div></div>
-            <div><span class="bd-lab">est. value / year</span><div class="bd-big bd-green" id="oUsd">—</div></div>
+            <div><span class="bd-lab">Your weight</span><div class="bd-big tabular-nums" id="oWeight">—</div></div>
+            <div><span class="bd-lab">Pool share</span><div class="bd-big tabular-nums" id="oShare">—</div></div>
+            <div><span class="bd-lab">$OTC / week</span><div class="bd-big tabular-nums" id="oWeek">—</div></div>
+            <div><span class="bd-lab">$OTC over period</span><div class="bd-big tabular-nums" id="oTotal">—</div></div>
           </div>
-          <p class="bd-fine" id="oFine">Assumes the full 50M pool streams over 52 weeks and your share stays constant. $OTC price is fetched live and moves.</p>
+          <div class="bd-payout"><div><span class="bd-lab">Estimated coupon value</span><div class="bd-huge bd-green tabular-nums" id="oUsd">—</div></div><div class="bd-payout-note" id="oNote">assuming the full 50M pool streams over 52 weeks and your share holds steady</div></div>
+          <p class="bd-fine">Unstake anytime — early exit from a committed maturity keeps your base (1.00×) coupons and forfeits only the boost above it. Principal is never locked. $OTC price is fetched live and moves.</p>
         </div>
       </div>
     </section>
 
     <section id="pool" class="bd-section">
-      <h2 class="bd-h2">How it works</h2>
+      <h2 class="bd-h2">The maturity ladder</h2>
+      <p class="bd-subtle">Bonds pay more for longer commitments. So does this desk. Your reward weight = your $BND stake &times; your maturity multiplier — and the weekly 961,538 $OTC is split pro-rata across everyone's weighted stake.</p>
+      <div class="bd-ladder">
+        <div class="bd-lad-head"><span>Maturity</span><span>Commitment</span><span>Weight</span><span class="bd-hidemob">What it means</span></div>
+        <div class="bd-lad-row"><span class="bd-lad-name">Call</span><span>flexible</span><span class="bd-lad-w">1.00&times;</span><span class="bd-hidemob">stay fully liquid, base coupon</span></div>
+        <div class="bd-lad-row"><span class="bd-lad-name">Short Bond</span><span>3 months</span><span class="bd-lad-w">1.25&times;</span><span class="bd-hidemob">+25% coupon for a quarter</span></div>
+        <div class="bd-lad-row"><span class="bd-lad-name">Note</span><span>6 months</span><span class="bd-lad-w">1.50&times;</span><span class="bd-hidemob">+50% coupon for a half-year</span></div>
+        <div class="bd-lad-row bd-lad-best"><span class="bd-lad-name">Long Bond</span><span>12 months</span><span class="bd-lad-w">2.00&times;</span><span class="bd-hidemob">double coupon — the deepest desk</span></div>
+      </div>
       <div class="bd-steps">
-        <div class="bd-step"><span class="bd-step-n">01</span><b>Hold $BOND</b><p>Staking is snapshot-based. Keep $BOND in your wallet — no deposits, no contracts to trust, nothing to un-stake later.</p></div>
-        <div class="bd-step"><span class="bd-step-n">02</span><b>Weekly snapshot</b><p>Every week, holder balances are snapshotted. Your coupon is your share of that week's 961,538 $OTC emission, pro-rata.</p></div>
-        <div class="bd-step"><span class="bd-step-n">03</span><b>Coupons paid in $OTC</b><p>Payouts come from the published pool wallet below — every distribution is a public on-chain transfer you can audit.</p></div>
+        <div class="bd-step"><span class="bd-step-n">01</span><b>Stake &amp; pick a maturity</b><p>Hold $BND and choose a rung. Higher maturities carry more weight, so they earn a larger slice of every weekly coupon.</p></div>
+        <div class="bd-step"><span class="bd-step-n">02</span><b>Coupons accrue by the second</b><p>Rewards are pro-rata by weighted stake and prorated to the exact time you're in. Weekly snapshots pay out from the published pool wallet.</p></div>
+        <div class="bd-step"><span class="bd-step-n">03</span><b>Unstake whenever</b><p>Principal is never locked. Exit a committed maturity early and you keep every base coupon — you only give up the boost above 1.00&times;. No penalty on your $BND, ever.</p></div>
       </div>
     </section>
 
@@ -89,7 +104,7 @@
       <div class="bd-verify">
         <div class="bd-vrow"><span class="bd-lab">Pool wallet</span><code class="bd-code"><a href="https://solscan.io/account/94sBKofyYj2LoytYMF2Ld7nw82G5kuZrRB3vzf7LDRnK" target="_blank" rel="noopener">94sBKofyYj2LoytYMF2Ld7nw82G5kuZrRB3vzf7LDRnK</a></code></div>
         <div class="bd-vrow"><span class="bd-lab">$OTC mint</span><code class="bd-code"><a href="https://solscan.io/token/MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump" target="_blank" rel="noopener">MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump</a></code></div>
-        <div class="bd-vrow"><span class="bd-lab">$BOND mint</span><code class="bd-code" id="bondMint">launching soon</code></div>
+        <div class="bd-vrow"><span class="bd-lab">$BND mint</span><code class="bd-code" id="bondMint">launching soon</code></div>
       </div>
     </section>
   </main>
@@ -101,7 +116,7 @@
           <img alt="" draggable="false" width="22" height="22" class="block h-[22px] w-[22px] select-none" src="./logo.png">
           <span class="text-[12px] font-bold tracking-[0.06em] text-ink">BOND DESKS</span>
         </div>
-        <p class="mt-3 text-[10.5px] leading-relaxed text-muted">The bond desk of the family — a fixed $OTC pool paying weekly coupons to $BOND holders, verifiable on-chain.</p>
+        <p class="mt-3 text-[10.5px] leading-relaxed text-muted">The bond desk of the family — a fixed $OTC pool paying weekly coupons to $BND holders, verifiable on-chain.</p>
       </div>
       <nav aria-label="Footer" class="grid grid-cols-2 gap-x-8 gap-y-7 text-[11px] sm:grid-cols-3 sm:gap-x-11">
         <div><p class="mb-3 text-[9px] uppercase tracking-[0.14em] text-muted/50">Program</p><ul class="space-y-2">
@@ -111,7 +126,6 @@
         </ul></div>
         <div><p class="mb-3 text-[9px] uppercase tracking-[0.14em] text-muted/50">Family</p><ul class="space-y-2">
           <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="https://otcdesks.cash/" target="_blank" rel="noopener">OTC Desks</a></li>
-          <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="https://fxdesks.cash/" target="_blank" rel="noopener">FX Desks</a></li>
         </ul></div>
         <div><p class="mb-3 text-[9px] uppercase tracking-[0.14em] text-muted/50">More</p><ul class="space-y-2">
           <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="https://solscan.io/account/94sBKofyYj2LoytYMF2Ld7nw82G5kuZrRB3vzf7LDRnK" target="_blank" rel="noopener">Pool wallet</a></li>

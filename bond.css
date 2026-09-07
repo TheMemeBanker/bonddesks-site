@@ -25,7 +25,7 @@ body { font-family: var(--font-mono); }
 .bd-tick .up { color: var(--phos); }
 .bd-hero { padding: 56px 0 8px; text-align: left; }
 .bd-h1 { font-size: 44px; line-height: 1.12; font-weight: 800; color: var(--ink); letter-spacing: -.01em; }
-.bd-bond { color: var(--head); text-shadow: 0 0 24px color-mix(in srgb, var(--head) 40%, transparent); }
+.bd-bond { color: var(--brand); text-shadow: 0 0 24px color-mix(in srgb, var(--brand) 40%, transparent); }
 .bd-otc { color: var(--phos); text-shadow: 0 0 24px color-mix(in srgb, var(--phos) 40%, transparent); }
 .bd-sub { margin-top: 14px; max-width: 62ch; font-size: 13px; line-height: 1.7; color: var(--muted); }
 .bd-sub b { color: var(--ink); }
@@ -70,4 +70,33 @@ body { font-family: var(--font-mono); }
   .bd-steps { grid-template-columns: 1fr; }
   .bd-cta { display: none; }
   .bd-vrow { flex-direction: column; gap: 4px; }
+}
+
+/* maturity ladder + upgraded calculator */
+.bd-mat { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; margin-bottom: 16px; }
+.bd-mat-b { display: flex; flex-direction: column; align-items: center; gap: 3px; border: 1px solid var(--frame); border-radius: 12px; background: var(--paper); color: var(--muted); font-family: var(--font-mono); font-size: 13px; font-weight: 700; padding: 10px 6px; cursor: pointer; transition: all .15s ease; }
+.bd-mat-b span { font-size: 9px; font-weight: 500; letter-spacing: .04em; color: var(--muted); }
+.bd-mat-b:hover { color: var(--ink); }
+.bd-mat-b.on { border-color: var(--brand); background: color-mix(in srgb, var(--brand) 14%, var(--paper)); color: var(--ink); }
+.bd-mat-b.on span { color: var(--brand); }
+.bd-durrow { display: flex; align-items: center; gap: 14px; margin-top: 16px; }
+.bd-dur-v { font-size: 15px; font-weight: 800; color: var(--ink); min-width: 28px; text-align: right; }
+.bd-calc-out { grid-template-columns: repeat(4, minmax(0,1fr)); }
+.bd-payout { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 18px; padding: 16px 18px; border: 1px solid var(--frame); border-radius: 14px; background: color-mix(in srgb, var(--phos) 7%, var(--paper)); }
+.bd-huge { font-size: 34px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -.01em; margin-top: 2px; }
+.bd-payout-note { max-width: 30ch; font-size: 10px; line-height: 1.5; color: var(--muted); text-align: right; }
+.bd-ladder { margin-top: 16px; border: 1px solid var(--frame); border-radius: 16px; overflow: hidden; background: var(--paper); }
+.bd-lad-head, .bd-lad-row { display: grid; grid-template-columns: 1fr 1fr .8fr 1.8fr; gap: 10px; align-items: center; padding: 13px 18px; }
+.bd-lad-head { background: var(--well); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line); }
+.bd-lad-row { border-bottom: 1px solid var(--line); font-size: 12.5px; color: var(--muted); }
+.bd-lad-row:last-child { border-bottom: 0; }
+.bd-lad-name { font-weight: 700; color: var(--ink); }
+.bd-lad-w { font-weight: 800; color: var(--brand); font-variant-numeric: tabular-nums; }
+.bd-lad-best { background: color-mix(in srgb, var(--brand) 8%, transparent); }
+@media (max-width: 720px) {
+  .bd-payout { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .bd-payout-note { text-align: left; max-width: none; }
+  .bd-lad-head, .bd-lad-row { grid-template-columns: 1fr 1fr .7fr; }
+  .bd-hidemob { display: none; }
+  .bd-mat-b { font-size: 11px; }
 }

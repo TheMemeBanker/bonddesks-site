@@ -55,15 +55,21 @@ function renderUsd(){
 function calc(){
   const yours = parseNum($("cYours").value);
   const total = Math.max(parseNum($("cTotal").value), yours);
-  if(!yours || !total){ ["oShare","oWeek","oYear","oUsd"].forEach(i=>$(i).textContent="—"); return; }
-  const share = yours/total;
-  const wk = WEEKLY*share, yr = POOL_TOTAL*share;
+  const weeks = parseInt($("cDur").value,10)||52;
+  const matEl = document.querySelector(".bd-mat-b.on");
+  const w = matEl ? parseFloat(matEl.dataset.w) : 1;
+  if(!yours || !total){ ["oWeight","oShare","oWeek","oTotal","oUsd"].forEach(i=>$(i).textContent="—"); return; }
+  const myWeighted = yours*w;
+  const share = myWeighted/total;                 // total = total WEIGHTED stake in pool
+  const wk = WEEKLY*share;
+  const tot = wk*weeks;
+  $("oWeight").textContent = fmt(myWeighted)+" ("+w.toFixed(2)+"×)";
   $("oShare").textContent = (share*100).toLocaleString("en-US",{maximumFractionDigits:4})+"%";
   $("oWeek").textContent = fmt(wk,0);
-  $("oYear").textContent = fmt(yr,0);
-  $("oUsd").textContent = otcPrice!=null ? "$"+fmt(yr*otcPrice) : "—";
-}
-function buildRail(){
+  $("oTotal").textContent = fmt(tot,0);
+  $("oUsd").textContent = otcPrice!=null ? "$"+fmt(tot*otcPrice) : "—";
+  $("oNote").textContent = "over "+weeks+" week"+(weeks==1?"":"s")+" at a "+w.toFixed(2)+"× maturity, assuming your share holds steady";
+}function buildRail(){
   const items = [
     ["POOL", poolBal!=null?fmt(poolBal)+" $OTC":"50,000,000 $OTC"],
     ["COUPON", fmt(WEEKLY,0)+" $OTC / week"],
@@ -79,6 +85,14 @@ function buildRail(){
 /* slider = log10 of total staked */
 function sliderToTotal(v){ return Math.round(Math.pow(10, parseFloat(v))); }
 $("cSlider").addEventListener("input", (e)=>{ $("cTotal").value = fmt(sliderToTotal(e.target.value)); calc(); });
+document.querySelectorAll(".bd-mat-b").forEach(btn=>btn.addEventListener("click", ()=>{
+  document.querySelectorAll(".bd-mat-b").forEach(b=>b.classList.remove("on"));
+  btn.classList.add("on");
+  const wk = parseInt(btn.dataset.wk,10);
+  if(wk>0){ $("cDur").value = wk; $("durVal").textContent = wk; }
+  calc();
+}));
+$("cDur").addEventListener("input",(e)=>{ $("durVal").textContent = e.target.value; calc(); });
 ["cYours","cTotal"].forEach(id=>$(id).addEventListener("input", ()=>{ 
   if(id==="cTotal"){ const t=parseNum($("cTotal").value); if(t>0) $("cSlider").value = Math.log10(t).toFixed(2); }
   calc();
