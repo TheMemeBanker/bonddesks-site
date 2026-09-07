@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BOND Desks — stake $BOND, earn $OTC</title>
+<meta name="description" content="The bond desk of the OTC family. Stake $BOND, earn $OTC from a fixed, on-chain-verifiable 50M pool. No lockups. Your tokens never leave your wallet.">
+<link rel="icon" type="image/png" href="./favicon.png">
+<meta property="og:title" content="BOND Desks">
+<meta property="og:description" content="Stake $BOND. Earn $OTC. Fixed pool, verifiable on-chain.">
+<meta name="theme-color" content="#141414">
+<link rel="stylesheet" href="./theirs.css">
+<link rel="stylesheet" href="./bond.css">
+<script>try{var t=localStorage.getItem("bond-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body class="min-h-screen bg-paper text-ink">
+<div class="bd-shell">
+  <header class="bd-header">
+    <a href="#top" class="bd-brand" aria-label="BOND Desks home">
+      <img src="./logo.png" alt="" width="26" height="26" class="bd-brand-logo" draggable="false">
+      <span class="bd-brand-word">BOND DESKS</span>
+    </a>
+    <div class="bd-sibs">
+      <a id="bondTokenLink" class="bd-sib" href="#" aria-disabled="true" title="$BOND — launching">$BOND</a>
+      <a class="bd-sib" href="https://otcdesks.cash/" target="_blank" rel="noopener">OTC</a>
+      <a class="bd-sib" href="https://fxdesks.cash/" target="_blank" rel="noopener">FX</a>
+    </div>
+    <nav aria-label="Main" class="ml-auto flex min-w-0 items-center gap-4 overflow-x-auto no-scrollbar bd-nav">
+      <a class="shrink-0 text-[12.5px] transition-colors text-muted hover:text-ink" href="#stake">Stake</a>
+      <a class="shrink-0 text-[12.5px] transition-colors text-muted hover:text-ink" href="#calculator">Calculator</a>
+      <a class="shrink-0 text-[12.5px] transition-colors text-muted hover:text-ink" href="#pool">Pool</a>
+      <a class="shrink-0 text-[12.5px] transition-colors text-muted hover:text-ink" href="#verify">Verify</a>
+    </nav>
+    <button id="themeBtn" class="bd-iconbtn" type="button" aria-label="Toggle theme">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" width="15" height="15"><circle cx="8" cy="8" r="3.2"/><path d="M8 1.2v1.8M8 13v1.8M1.2 8H3M13 8h1.8M3.2 3.2l1.3 1.3M11.5 11.5l1.3 1.3M12.8 3.2l-1.3 1.3M4.5 11.5l-1.3 1.3" stroke-linecap="round"/></svg>
+    </button>
+    <a href="#calculator" class="bd-cta">Estimate</a>
+  </header>
+
+  <div class="bd-rail" aria-label="Program tape">
+    <div class="bd-rail-track" id="railTrack"></div>
+  </div>
+
+  <main id="top">
+    <section id="stake" class="bd-hero">
+      <h1 class="bd-h1">Stake <span class="bd-bond">$BOND</span>.<br>Earn <span class="bd-otc">$OTC</span>.</h1>
+      <p class="bd-sub">The bond desk pays a coupon. A fixed pool of <b>50,000,000 $OTC</b> streams to $BOND holders over 12 months — weekly snapshots, pro-rata by stake. No lockups. Your tokens never leave your wallet.</p>
+      <div class="bd-stats" id="heroStats">
+        <div class="bd-stat"><span class="bd-stat-n" id="stPool">—</span><span class="bd-stat-l">$OTC in pool (live)</span></div>
+        <div class="bd-stat"><span class="bd-stat-n" id="stPoolUsd">—</span><span class="bd-stat-l">pool value</span></div>
+        <div class="bd-stat"><span class="bd-stat-n">961,538</span><span class="bd-stat-l">$OTC emitted / week</span></div>
+        <div class="bd-stat"><span class="bd-stat-n">52</span><span class="bd-stat-l">weekly coupons</span></div>
+      </div>
+    </section>
+
+    <section id="calculator" class="bd-section">
+      <h2 class="bd-h2">Coupon calculator</h2>
+      <p class="bd-subtle">Estimates, not guarantees — your coupon depends on how much $BOND is staked next to yours.</p>
+      <div class="bd-calc rounded-[20px] bg-paper-2/40 pb-[1px]">
+        <div class="mt-2 rounded-[18px] border border-line bg-paper p-4 bd-calc-in">
+          <div class="bd-calc-grid">
+            <label class="bd-field"><span class="bd-lab">Your $BOND stake</span><input id="cYours" type="text" inputmode="decimal" value="1,000,000" class="bd-input tabular-nums"></label>
+            <label class="bd-field"><span class="bd-lab">Total $BOND staked (assumption)</span><input id="cTotal" type="text" inputmode="decimal" value="100,000,000" class="bd-input tabular-nums"></label>
+          </div>
+          <input id="cSlider" type="range" min="6" max="9.7" step="0.05" value="8" class="bd-slider" aria-label="Total staked, log scale">
+          <div class="bd-calc-out">
+            <div><span class="bd-lab">Your share</span><div class="bd-big" id="oShare">—</div></div>
+            <div><span class="bd-lab">$OTC / week</span><div class="bd-big" id="oWeek">—</div></div>
+            <div><span class="bd-lab">$OTC / year</span><div class="bd-big" id="oYear">—</div></div>
+            <div><span class="bd-lab">est. value / year</span><div class="bd-big bd-green" id="oUsd">—</div></div>
+          </div>
+          <p class="bd-fine" id="oFine">Assumes the full 50M pool streams over 52 weeks and your share stays constant. $OTC price is fetched live and moves.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pool" class="bd-section">
+      <h2 class="bd-h2">How it works</h2>
+      <div class="bd-steps">
+        <div class="bd-step"><span class="bd-step-n">01</span><b>Hold $BOND</b><p>Staking is snapshot-based. Keep $BOND in your wallet — no deposits, no contracts to trust, nothing to un-stake later.</p></div>
+        <div class="bd-step"><span class="bd-step-n">02</span><b>Weekly snapshot</b><p>Every week, holder balances are snapshotted. Your coupon is your share of that week's 961,538 $OTC emission, pro-rata.</p></div>
+        <div class="bd-step"><span class="bd-step-n">03</span><b>Coupons paid in $OTC</b><p>Payouts come from the published pool wallet below — every distribution is a public on-chain transfer you can audit.</p></div>
+      </div>
+    </section>
+
+    <section id="verify" class="bd-section">
+      <h2 class="bd-h2">Verify the pool</h2>
+      <p class="bd-subtle">Don't trust the site — read the chain. The pool balance above is fetched live from this wallet every time the page loads.</p>
+      <div class="bd-verify">
+        <div class="bd-vrow"><span class="bd-lab">Pool wallet</span><code class="bd-code"><a href="https://solscan.io/account/94sBKofyYj2LoytYMF2Ld7nw82G5kuZrRB3vzf7LDRnK" target="_blank" rel="noopener">94sBKofyYj2LoytYMF2Ld7nw82G5kuZrRB3vzf7LDRnK</a></code></div>
+        <div class="bd-vrow"><span class="bd-lab">$OTC mint</span><code class="bd-code"><a href="https://solscan.io/token/MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump" target="_blank" rel="noopener">MukLDtJ8Cx9DxLbeyLRSWPSposTMWuwHANbuaudpump</a></code></div>
+        <div class="bd-vrow"><span class="bd-lab">$BOND mint</span><code class="bd-code" id="bondMint">launching soon</code></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mt-24 border-t border-line pb-2 pt-9">
+    <div class="grid gap-x-6 gap-y-9 sm:grid-cols-[minmax(0,1fr)_auto]">
+      <div class="max-w-[240px]">
+        <div class="flex items-center gap-2">
+          <img alt="" draggable="false" width="22" height="22" class="block h-[22px] w-[22px] select-none" src="./logo.png">
+          <span class="text-[12px] font-bold tracking-[0.06em] text-ink">BOND DESKS</span>
+        </div>
+        <p class="mt-3 text-[10.5px] leading-relaxed text-muted">The bond desk of the family — a fixed $OTC pool paying weekly coupons to $BOND holders, verifiable on-chain.</p>
+      </div>
+      <nav aria-label="Footer" class="grid grid-cols-2 gap-x-8 gap-y-7 text-[11px] sm:grid-cols-3 sm:gap-x-11">
+        <div><p class="mb-3 text-[9px] uppercase tracking-[0.14em] text-muted/50">Program</p><ul class="space-y-2">
+          <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="#stake">Stake</a></li>
+          <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="#calculator">Calculator</a></li>
+          <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="#verify">Verify</a></li>
+        </ul></div>
+        <div><p class="mb-3 text-[9px] uppercase tracking-[0.14em] text-muted/50">Family</p><ul class="space-y-2">
+          <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="https://otcdesks.cash/" target="_blank" rel="noopener">OTC Desks</a></li>
+          <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="https://fxdesks.cash/" target="_blank" rel="noopener">FX Desks</a></li>
+        </ul></div>
+        <div><p class="mb-3 text-[9px] uppercase tracking-[0.14em] text-muted/50">More</p><ul class="space-y-2">
+          <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="https://solscan.io/account/94sBKofyYj2LoytYMF2Ld7nw82G5kuZrRB3vzf7LDRnK" target="_blank" rel="noopener">Pool wallet</a></li>
+        </ul></div>
+      </nav>
+    </div>
+    <p class="mt-8 text-[9.5px] text-muted/60">Coupons are paid from a fixed 50M $OTC pool on the published schedule — estimates depend on total staked and $OTC price. Nothing here is financial advice.</p>
+  </footer>
+</div>
+<script src="./app.js" defer></script>
+</body>
+</html>

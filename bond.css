@@ -1,0 +1,73 @@
+/* BOND Desks — components on the OTC design tokens (theirs.css). */
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-mono); }
+.bd-shell { max-width: 1060px; margin: 0 auto; padding: 0 20px 40px; }
+.bd-header { display: flex; align-items: center; gap: 14px; padding: 18px 0 14px; }
+.bd-brand { display: flex; flex-shrink: 0; align-items: center; gap: 9px; text-decoration: none; color: var(--ink); }
+.bd-brand-logo { display: block; height: 26px; width: 26px; image-rendering: pixelated; }
+.bd-brand-word { font-size: 12.5px; font-weight: 700; letter-spacing: .07em; white-space: nowrap; }
+.bd-sibs { display: flex; align-items: center; gap: 6px; margin-left: 2px; flex-shrink: 0; }
+.bd-sib { border: 1px solid var(--frame); border-radius: 999px; background: var(--paper); color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .05em; padding: 3px 9px; text-decoration: none; transition: background .15s ease, color .15s ease; }
+.bd-sib:hover { color: var(--ink); background: var(--well); }
+.bd-sib[aria-disabled="true"] { opacity: .55; cursor: default; pointer-events: none; }
+.bd-nav a { text-decoration: none; }
+.bd-iconbtn { display: grid; place-items: center; height: 28px; width: 28px; border: 0; border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; }
+.bd-iconbtn:hover { color: var(--ink); background: var(--well); }
+.bd-cta { flex-shrink: 0; border: 1px solid var(--frame); border-radius: 999px; padding: 6px 14px; font-size: 11.5px; color: var(--ink); text-decoration: none; background: var(--well); transition: background .15s ease; }
+.bd-cta:hover { background: var(--well-2); }
+.bd-rail { position: relative; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 0 -20px; padding: 7px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+.bd-rail-track { display: flex; gap: 26px; width: max-content; animation: bdmarquee 55s linear infinite; will-change: transform; }
+.bd-rail:hover .bd-rail-track { animation-play-state: paused; }
+@keyframes bdmarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .bd-rail-track { animation: none; } }
+.bd-tick { display: flex; align-items: center; gap: 7px; font-size: 11px; white-space: nowrap; color: var(--muted); }
+.bd-tick b { color: var(--ink); font-weight: 700; }
+.bd-tick .up { color: var(--phos); }
+.bd-hero { padding: 56px 0 8px; text-align: left; }
+.bd-h1 { font-size: 44px; line-height: 1.12; font-weight: 800; color: var(--ink); letter-spacing: -.01em; }
+.bd-bond { color: var(--head); text-shadow: 0 0 24px color-mix(in srgb, var(--head) 40%, transparent); }
+.bd-otc { color: var(--phos); text-shadow: 0 0 24px color-mix(in srgb, var(--phos) 40%, transparent); }
+.bd-sub { margin-top: 14px; max-width: 62ch; font-size: 13px; line-height: 1.7; color: var(--muted); }
+.bd-sub b { color: var(--ink); }
+.bd-stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-top: 28px; }
+.bd-stat { border: 1px solid var(--frame); border-radius: 14px; background: var(--paper); padding: 14px 16px; }
+.bd-stat-n { display: block; font-size: 22px; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; }
+.bd-stat-l { display: block; margin-top: 4px; font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.bd-section { margin-top: 64px; }
+.bd-h2 { font-size: 17px; font-weight: 700; color: var(--ink); }
+.bd-subtle { margin-top: 5px; font-size: 11px; color: var(--muted); max-width: 62ch; line-height: 1.6; }
+.bd-calc { margin-top: 16px; border-radius: 20px; background: color-mix(in srgb, var(--paper-2) 40%, transparent); padding-bottom: 1px; }
+.bd-calc-in { margin-top: 8px; }
+.bd-calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.bd-field { display: block; min-width: 0; }
+.bd-lab { display: block; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.bd-input { width: 100%; border: 1px solid var(--frame); border-radius: 10px; background: var(--well); color: var(--ink); font-family: var(--font-mono); font-size: 13px; padding: 9px 11px; outline: none; }
+.bd-input:focus { border-color: var(--chrome); }
+.bd-slider { width: 100%; margin-top: 14px; accent-color: var(--phos); }
+.bd-calc-out { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-top: 18px; }
+.bd-big { font-size: 20px; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; margin-top: 2px; }
+.bd-green { color: var(--phos); }
+.bd-fine { margin-top: 14px; font-size: 10px; color: var(--muted); line-height: 1.6; }
+.bd-steps { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; margin-top: 18px; }
+.bd-step { border: 1px solid var(--frame); border-radius: 16px; background: var(--paper); padding: 18px; }
+.bd-step-n { display: block; font-size: 10px; letter-spacing: .18em; color: var(--phos); margin-bottom: 8px; }
+.bd-step b { font-size: 13px; color: var(--ink); }
+.bd-step p { margin-top: 8px; font-size: 11px; line-height: 1.65; color: var(--muted); }
+.bd-verify { margin-top: 16px; border: 1px solid var(--frame); border-radius: 16px; background: var(--paper); padding: 8px 18px; }
+.bd-vrow { display: flex; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
+.bd-vrow:last-child { border-bottom: 0; }
+.bd-vrow .bd-lab { margin: 0; flex-shrink: 0; width: 90px; }
+.bd-code { font-size: 11px; color: var(--ink); overflow-wrap: anywhere; }
+.bd-code a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--muted); }
+.bd-code a:hover { color: var(--phos); }
+@media (max-width: 720px) {
+  .bd-shell { padding: 0 14px 32px; }
+  .bd-rail { margin: 0 -14px; }
+  .bd-h1 { font-size: 32px; }
+  .bd-stats { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .bd-calc-grid { grid-template-columns: 1fr; }
+  .bd-calc-out { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .bd-steps { grid-template-columns: 1fr; }
+  .bd-cta { display: none; }
+  .bd-vrow { flex-direction: column; gap: 4px; }
+}
