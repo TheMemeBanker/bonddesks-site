@@ -22,10 +22,12 @@ async function rpcCall(method, params){
 }
 async function loadPool(){
   try{
-    const res = await rpcCall("getTokenAccountsByOwner",[POOL_WALLET,{mint:OTC_MINT},{encoding:"jsonParsed"}]);
-    if(!res || !res.value){ $("stPool").innerHTML = '<a href="https://solscan.io/account/'+POOL_WALLET+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted currentColor">verify ↗</a>'; return renderUsd(), buildRail(); }
-    let bal = 0;
-    for(const a of res.value) bal += a.account.data.parsed.info.tokenAmount.uiAmount||0;
+    // POOL_WALLET is itself the $OTC token account, so a plain getAccountInfo
+    // works — public RPCs 403 browser getTokenAccountsByOwner (indexed) now.
+    const res = await rpcCall("getAccountInfo",[POOL_WALLET,{encoding:"jsonParsed"}]);
+    const info = res && res.value && res.value.data && res.value.data.parsed && res.value.data.parsed.info;
+    if(!info || info.mint !== OTC_MINT){ $("stPool").innerHTML = '<a href="https://solscan.io/account/'+POOL_WALLET+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted currentColor">verify ↗</a>'; return renderUsd(), buildRail(); }
+    const bal = info.tokenAmount.uiAmount || 0;
     poolBal = bal;
     $("stPool").textContent = fmt(bal);
   }catch(e){ $("stPool").textContent = "on-chain"; }
