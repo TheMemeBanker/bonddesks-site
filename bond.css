@@ -42,8 +42,8 @@ body { font-family: var(--font-mono); }
 .bd-tick .up { color: var(--phos); }
 .bd-hero { padding: 56px 0 8px; text-align: left; }
 .bd-h1 { font-size: 44px; line-height: 1.12; font-weight: 800; color: var(--ink); letter-spacing: -.01em; }
-.bd-bond { color: var(--bdg); text-shadow: 0 0 24px color-mix(in srgb, var(--bdg) 40%, transparent); }
-.bd-otc { color: var(--phos); text-shadow: 0 0 24px color-mix(in srgb, var(--phos) 40%, transparent); }
+.bd-bond { color: var(--bdg); }
+.bd-otc { color: var(--phos); text-shadow: 0 0 18px color-mix(in srgb, var(--phos) 22%, transparent); }
 .bd-sub { margin-top: 14px; max-width: 62ch; font-size: 13px; line-height: 1.7; color: var(--muted); }
 .bd-sub b { color: var(--ink); }
 .bd-stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-top: 28px; }
