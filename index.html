@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BOND Desks — stake $BD, clip the $OTC coupon</title>
-<meta name="description" content="The bond desk of the OTC family. Stake $BD, pick a maturity, and clip a weekly $OTC coupon from a fixed, on-chain-verifiable 50M pool. Principal never locked.">
-<link rel="icon" type="image/png" href="./favicon-shears.png">
+<title>BOND Desks — fixed income, on tempo</title>
+<meta name="description" content="The bond desk of the OTC family. Stake $BD, pick a maturity, and collect a weekly $OTC coupon on tempo from a fixed, on-chain-verifiable 50M pool. Principal never locked.">
+<link rel="icon" type="image/png" href="./favicon-metronome.png">
 <meta property="og:title" content="BOND Desks">
-<meta property="og:description" content="Stake $BD. Clip the $OTC coupon. A fixed 50M pool, 52 weekly coupons, verifiable on-chain.">
+<meta property="og:description" content="Stake $BD. Collect the $OTC coupon, on tempo. A fixed 50M pool, 52 weekly coupons, verifiable on-chain.">
 <meta name="theme-color" content="#141414">
 <link rel="stylesheet" href="./theirs.css">
 <link rel="stylesheet" href="./bond.css">
@@ -17,7 +17,7 @@
 <div class="bd-shell">
   <header class="bd-header">
     <a href="#top" class="bd-brand" aria-label="BOND Desks home">
-      <img src="./logo-shears.png" alt="" width="26" height="26" class="bd-brand-logo" draggable="false">
+      <img src="./logo-metronome.png" alt="" width="26" height="26" class="bd-brand-logo" draggable="false">
       <span class="bd-brand-word">BOND DESKS</span>
     </a>
     <div class="bd-sibs">
@@ -27,7 +27,7 @@
     <nav aria-label="Main" class="ml-auto flex min-w-0 items-center gap-4 overflow-x-auto no-scrollbar bd-nav">
       <a class="shrink-0 text-[12.5px] transition-colors text-muted hover:text-ink" href="#stake">Stake</a>
       <a class="shrink-0 text-[12.5px] transition-colors text-muted hover:text-ink" href="#calculator">Calculator</a>
-      <a class="shrink-0 text-[12.5px] transition-colors text-muted hover:text-ink" href="#book">Coupon book</a>
+      <a class="shrink-0 text-[12.5px] transition-colors text-muted hover:text-ink" href="#book">Coupon tempo</a>
       <a class="shrink-0 text-[12.5px] transition-colors text-muted hover:text-ink" href="#verify">Verify</a>
     </nav>
     <button id="themeBtn" class="bd-iconbtn" type="button" aria-label="Toggle theme">
@@ -42,8 +42,8 @@
 
   <main id="top">
     <section id="stake" class="bd-hero">
-      <p class="bd-kicker">The bond desk of the OTC family</p>
-      <h1 class="bd-h1">Stake <span class="bd-bond">$BD</span>.<br>Clip the <span class="bd-otc">$OTC</span> coupon.</h1>
+      <p class="bd-kicker">The bond desk of the OTC family · fixed income keeps time</p>
+      <h1 class="bd-h1">Stake <span class="bd-bond">$BD</span>.<br>Collect the <span class="bd-otc">$OTC</span> coupon, on tempo.</h1>
       <p class="bd-sub">A bond pays a coupon. So does this desk. A fixed pool of <b>50,000,000 $OTC</b> is cut into <b>52 weekly coupons of 961,538 $OTC</b> and paid to $BD stakers pro-rata by weighted stake. Commit to a maturity for a bigger coupon, or stay on call. <b>Unstake anytime</b> — principal is never locked, and every coupon is prorated to the second.</p>
       <div class="bd-ledger" id="heroStats" aria-label="Program figures">
         <div class="bd-fig"><span class="bd-fig-n" id="stPool">—</span><span class="bd-fig-l">$OTC in pool · live</span></div>
@@ -84,7 +84,7 @@
 
     <section id="book" class="bd-section">
       <div class="bd-sechead">
-        <h2 class="bd-h2"><img src="./logo-shears.png" alt="" width="32" height="32" class="bd-h2-mark" draggable="false">The coupon book</h2>
+        <h2 class="bd-h2"><img src="./logo-metronome.png" alt="" width="32" height="32" class="bd-h2-mark" draggable="false">The coupon tempo</h2>
         <p class="bd-subtle">Bonds pay more for longer commitments. So does this desk. Your reward weight = your $BD stake &times; your maturity multiplier — and each weekly coupon of 961,538 $OTC is split pro-rata across everyone's weighted stake.</p>
       </div>
       <div class="bd-coupons">
@@ -117,16 +117,16 @@
     <div class="grid gap-x-6 gap-y-9 sm:grid-cols-[minmax(0,1fr)_auto]">
       <div class="max-w-[240px]">
         <div class="flex items-center gap-2">
-          <img alt="" draggable="false" width="22" height="22" class="block h-[22px] w-[22px] select-none bd-brand-logo" src="./logo-shears.png">
+          <img alt="" draggable="false" width="22" height="22" class="block h-[22px] w-[22px] select-none bd-brand-logo" src="./logo-metronome.png">
           <span class="text-[12px] font-bold tracking-[0.06em] text-ink">BOND DESKS</span>
         </div>
-        <p class="mt-3 text-[10.5px] leading-relaxed text-muted">The bond desk of the family — a fixed $OTC pool paying weekly coupons to $BD stakers, verifiable on-chain.</p>
+        <p class="mt-3 text-[10.5px] leading-relaxed text-muted">The bond desk of the family — fixed income, on tempo: a fixed $OTC pool paying a weekly coupon to $BD stakers, verifiable on-chain.</p>
       </div>
       <nav aria-label="Footer" class="grid grid-cols-2 gap-x-8 gap-y-7 text-[11px] sm:grid-cols-3 sm:gap-x-11">
         <div><p class="mb-3 text-[9px] uppercase tracking-[0.14em] text-muted/50">Program</p><ul class="space-y-2">
           <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="#stake">Stake</a></li>
           <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="#calculator">Calculator</a></li>
-          <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="#book">Coupon book</a></li>
+          <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="#book">Coupon tempo</a></li>
           <li><a class="inline-block text-muted transition-colors duration-150 hover:text-ink" href="#verify">Verify</a></li>
         </ul></div>
         <div><p class="mb-3 text-[9px] uppercase tracking-[0.14em] text-muted/50">Family</p><ul class="space-y-2">
